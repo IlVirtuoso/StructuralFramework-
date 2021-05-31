@@ -1,17 +1,36 @@
-namespace StructuralFramework {
+#pragma once
+#include <typeinfo>
+#include"Collections.hpp"
+namespace Structural {
 
-	struct SerializedObject
+	union SerializedObject
 	{
-		void* data;
 		int length;
 		int dimensions;
+		char* data;
+
+	public:
+		SerializedObject(char* data, int length, int dimensions) : data{data},length{length},dimensions{dimensions}{}
 	};
 
-	class ISerializable {
+	class ISerializable  {
 	public:
-		virtual SerializedObject Serialize() = 0;
+
+
+
+		SerializedObject Serialize() {
+			
+		}
+
 		template<class T>
-		virtual T Deserialize() = 0;
+		T Deserialize(SerializedObject object) {
+			return dynamic_cast<T>(this->Deserialize(object));
+		}
+	private:
+
+		 SerializedObject Deserialize(char* inputData) {
+			
+		}
 	};
 
 

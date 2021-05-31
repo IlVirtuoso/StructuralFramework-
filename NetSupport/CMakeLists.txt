@@ -14,5 +14,5 @@ INCLUDE_DIRECTORIES( ${Boost_INCLUDE_DIR} )
 
 add_executable (NetSupport "NetSupport.cpp" "NetSupport.h")
 target_link_libraries(NetSupport LINK_PUBLIC ${Boost_LIBRARIES})
-target_link_libraries(NetSupport LINK_PUBLIC Core)
+#target_link_libraries(NetSupport LINK_PUBLIC Core)
 target_include_directories(NetSupport PUBLIC Core)

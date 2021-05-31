@@ -1,14 +1,13 @@
 ﻿// CompliantFramework.cpp: definisce il punto di ingresso dell'applicazione.
 //
 #define EXPORT 1
-#include "CompliantFramework.h"
-
+#include "Core.h"
+#include "Collections.hpp"
+#include "ISerializable.hpp"
 using namespace std;
-
+using Structural::Collections::Generic::Dictionary;
 int main()
 {
-	cout << "Hello CMake." << endl;
+	Dictionary<int, int>* dic = new Dictionary<int, int>();
 	return 0;
 }
-
-int Test() { printf("Hello dll"); return 0; }

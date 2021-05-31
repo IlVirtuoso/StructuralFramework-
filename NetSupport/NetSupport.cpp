@@ -4,7 +4,7 @@ int main() {
 }
 
 namespace NetSupport {
-	class ClientSocket : ClientSocket {
+	class ClientSocket {
 
 	};
 }
