@@ -1,7 +1,9 @@
 #pragma once
 #include<unordered_map>
 #include<iostream>
+#include <algorithm>
 #include "ISerializable.hpp"
+#include "Interfaces.hpp"
 namespace Structural {
 
 	namespace Collections {
@@ -9,11 +11,17 @@ namespace Structural {
 		namespace Generic {
 
 			template<typename T>
-			class Array : public std::vector<T> {
+			class Array : std::vector<T> {
 			public:
 
 				bool remove(int index) {
-					
+					if (index <0 || index > this->size()) return false;
+					this->erase(this->begin() + index);
+					return true;
+				}
+
+				std::vector<T>::iterator getIterator() {
+					return this->begin();
 				}
 
 				int indexOf(T value) {
@@ -23,6 +31,9 @@ namespace Structural {
 					return -1;
 				}
 
+				void sort(Structural::Delegate<bool,T,T> sortDelegate) {
+					
+				}
 
 			};
 
