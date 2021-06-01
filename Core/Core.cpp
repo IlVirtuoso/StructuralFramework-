@@ -6,8 +6,15 @@
 #include "ISerializable.hpp"
 using namespace std;
 using Structural::Collections::Generic::Dictionary;
+using Structural::Collections::Generic::Array;
+using namespace Structural;
 int main()
 {
-	Dictionary<int, int>* dic = new Dictionary<int, int>();
-	return 0;
+	Array<int>* arr = new Array<int>({ 3,2,1,4,10,100,1000 });
+	int (*fcn)() {0};
+	auto sorted = arr->Reverse();
+	for each (auto v in sorted)
+	{
+		std::cout << v << std::endl;
+	}
 }

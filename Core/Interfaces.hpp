@@ -1,19 +1,19 @@
 #pragma once
-
+#include<functional>
 namespace Structural {
 
 	template<typename T,typename...Args>
-	class Delegate {
+	class Func {
 	private:
-		T(*func)(Args...);
+		std::function<T(Args...)> func;
 	public:
-		Delegate(T(*func)(...)) {
-			this->func = func;
+		
+		Func(std::function<T(Args...)> lambda) {
+			this->func = lambda;
 		}
 
-		T operator()(Args...) {
-			static_assert(this->func != nullptr, "Function pointer required");
-			this->func(...);
+		T operator()(Args...a) {
+			return this->func(a...);
 		}
 	};
 }

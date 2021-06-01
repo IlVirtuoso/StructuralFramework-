@@ -11,50 +11,126 @@ namespace Structural {
 		namespace Generic {
 
 			template<typename T>
-			class Array : std::vector<T> {
+			class Array : public std::vector<T> {
 			public:
 
-				bool remove(int index) {
+				Array(const std::list<T> varargs) {
+					for each (T e in varargs)
+					{
+						this->push_back(e);
+					}
+				}
+
+				Array(){}
+
+				void Insert(T elem) {
+					this->push_back(elem);
+				}
+
+				bool Remove(int index) {
 					if (index <0 || index > this->size()) return false;
 					this->erase(this->begin() + index);
 					return true;
 				}
 
-				std::vector<T>::iterator getIterator() {
-					return this->begin();
+				std::vector<T>::iterator begin() {
+					return std::vector<T>::begin();
 				}
 
-				int indexOf(T value) {
+				std::vector<T>::iterator end() {
+					return std::vector<T>::end();
+				}
+
+				int IndexOf(T value) {
 					for (register int i = 0; i < this->size(); i++)
 						if (this->at(i) == value)
 							return i;
 					return -1;
 				}
 
-				void sort(Structural::Delegate<bool,T,T> sortDelegate) {
-					
+				Array<T> Sort(Structural::Func<int,T,T> sortDelegate) {
+					Array<T> newArray{ *this };
+					quicksort(&newArray, 0, newArray.size() - 1, sortDelegate);
+					return newArray;
 				}
+
+				Array<T> Reverse() {
+					Array<T> newArray{};
+					for (int i = this->size() - 1; i >= 0; i--)
+						newArray.push_back(this->at(i));
+					return newArray;
+				}
+
+				
+
+			private:
+
+				static void quicksort(Array<T> * ar, int low, int high, Func<int,T,T> sortFunc) {
+					if (low < high) {
+						int pivot = ar->partition(ar, low, high,sortFunc);
+						quicksort(ar,low , pivot,sortFunc);
+						quicksort(ar, pivot + 1, high,sortFunc);
+					}
+				}
+
+				static int partition(Array<T> * ar, int low, int high , Func<int, T, T> sortFunc) {
+					T pivot = ar->at(high);
+					int i = low - 1;
+					int j = low;
+					for (j; j < high; j++) {
+						if (sortFunc(ar->at(j),pivot) <0) {
+							i++;
+							ar->swapelements(i, j);
+						}
+					}
+					ar->swapelements(i+1, high);
+					return i + 1;
+				}
+
+				void swapelements(int i1, int i2) {
+					T e1 = this->at(i1);
+					this->data()[i1] = this->data()[i2];
+					this->data()[i2] = e1;
+				}
+
 
 			};
 
 
 			template<typename K, typename V>
-			class Dictionary : public std::unordered_map<K,V> {
+			class Dictionary : std::unordered_map<K,V> {
 			private:
-				std::vector<K> * keys = new std::vector<K>();
-				std::vector<V> * values = new std::vector<V>();
+				Array<std::pair<K, V>*> pairs;
 				
 
 			public:
 
-				void insert(K key, V value) {
-					std::unordered_map<K, V>::insert(std::pair<K,V>(key,value));
-					this->keys->push_back(key);
-					this->values->push_back(value);
+				void Insert(K key, V value) {
+					std::pair<K, V> * pair = new std::pair<K,V>(key, value);
+					std::unordered_map<K, V>::insert(*pair);
+					pairs.Insert(pair);
 				}
 
-				void remove(K key) {
-					this->insert_or_assign(key, NULL);
+				Array<K> GetKeys() {
+					Array<K> keys{};
+					for each (std::pair<K,V>* elem in pairs)
+					{
+						keys.push_back(elem->first);
+					}
+					return keys;
+				}
+
+				Array<V> GetValues() {
+					Array<V> values{};
+					for each (auto elem in pairs)
+					{
+						values.push_back(elem->second);
+					}
+					return values;
+				}
+
+				void Remove(K key) {
+					
 					
 				}
 			};
