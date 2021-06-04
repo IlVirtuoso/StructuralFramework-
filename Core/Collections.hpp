@@ -33,6 +33,25 @@ namespace Structural {
 					return true;
 				}
 
+				int Find(Predicate<T> predicate) {
+					for (register int i = 0; i < this->size(); i++)
+						if (predicate(this->at(i)))
+							return i;
+					return -1;
+				}
+
+				Array<T> Select(Predicate<T> p) {
+					Array<T> select{};
+					for each (T var in *this)
+					{
+						if (p(var))
+							select.Insert(var);
+					}
+					return select;
+				}
+
+
+
 				std::vector<T>::iterator begin() {
 					return std::vector<T>::begin();
 				}
@@ -130,7 +149,7 @@ namespace Structural {
 				}
 
 				void Remove(K key) {
-					
+					std::unordered_map<K, V>::erase(key);
 					
 				}
 			};
