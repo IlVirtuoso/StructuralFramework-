@@ -4,6 +4,7 @@
 #include <algorithm>
 #include "ISerializable.hpp"
 #include "Interfaces.hpp"
+
 namespace Structural {
 
 	namespace Collections {
