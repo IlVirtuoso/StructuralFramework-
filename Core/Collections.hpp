@@ -68,6 +68,10 @@ namespace Structural {
 					return -1;
 				}
 
+				bool Exist(T value) {
+					return IndexOf(value) != -1;
+				}
+
 				Array<T> Sort(Structural::Func<int,T,T> sortDelegate) {
 					Array<T> newArray{ *this };
 					quicksort(&newArray, 0, newArray.size() - 1, sortDelegate);
@@ -116,7 +120,7 @@ namespace Structural {
 
 			};
 
-
+			using std::string;
 			template<typename K, typename V>
 			class Dictionary : std::unordered_map<K,V> {
 			private:
@@ -124,6 +128,11 @@ namespace Structural {
 				
 
 			public:
+
+				class KeyNotFoundException : public exception {
+				public:
+					KeyNotFoundException(string message) : exception{ message.c_str() } {}
+				};
 
 				void Insert(K key, V value) {
 					std::pair<K, V> * pair = new std::pair<K,V>(key, value);
@@ -149,9 +158,18 @@ namespace Structural {
 					return values;
 				}
 
+				inline bool KeyExist(K key) { return pairs.Find(Predicate<pair<K, V>*>{[key](std::pair<K, V>* e) {return e->first == key; }}) != -1; }
+
 				void Remove(K key) {
 					std::unordered_map<K, V>::erase(key);
-					
+					int i = pairs.Find(Predicate<std::pair<K, V>*>{[key](std::pair<K, V>* e) {return e->first == key; }});
+					pairs.Remove(i);
+				}
+
+				V operator[](K key){
+					if(KeyExist(key))
+						return std::unordered_map<K,V>::operator[](key);
+					throw new KeyNotFoundException("Error key not found");
 				}
 			};
 			
