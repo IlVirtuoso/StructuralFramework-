@@ -17,7 +17,6 @@ namespace Structural {
 	public:
 
 
-
 		SerializedObject Serialize() {
 			
 		}

@@ -6,10 +6,14 @@ if(NOT DEFINED ${LOCAL_RUN})
 	set(LOCAL_RUN true)
 project("NetSupport")
 endif() 
-# Aggiungere l'origine all'eseguibile di questo progetto.
 
-FIND_PACKAGE( Boost 1.40 COMPONENTS program_options REQUIRED )
-INCLUDE_DIRECTORIES( ${Boost_INCLUDE_DIR} )
+# Aggiungere l'origine all'eseguibile di questo progetto.
+FIND_PACKAGE( Boost 1.40 COMPONENTS program_options  )
+
+if(${Boost_FOUND})
+	INCLUDE_DIRECTORIES( ${Boost_INCLUDE_DIR} )
+endif()
+
 if(${LOCAL_RUN})
 	ADD_EXECUTABLE(NetSupport "NetSupport.h" "NetSupport.cpp")
 else()
