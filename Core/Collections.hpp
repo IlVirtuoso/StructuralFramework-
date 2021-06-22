@@ -117,6 +117,7 @@ namespace Structural {
 					this->data()[i2] = e1;
 				}
 
+				
 
 			};
 
