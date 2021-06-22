@@ -8,7 +8,7 @@ cmake_minimum_required (VERSION 3.8)
 project("Core")
 # Aggiungere l'origine all'eseguibile di questo progetto.
 if(${LOCAL_RUN})
-	add_executable (Core "Core.cpp" "Core.h" "Interfaces.hpp" "Streams.hpp")
+	add_executable (Core "Core.cpp" "Core.h" "Interfaces.hpp" "Streams.hpp" "Parsers.hpp" "Parsers.cpp")
 else()
 	add_library (Core SHARED "Core.cpp" "Core.h"  "ISerializable.hpp" "Collections.hpp" "Collections.cpp")
 	endif()
