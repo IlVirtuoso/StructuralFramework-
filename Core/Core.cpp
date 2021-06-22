@@ -4,6 +4,7 @@
 #include "Core.h"
 #include "Collections.hpp"
 #include "ISerializable.hpp"
+
 using namespace std;
 using Structural::Collections::Generic::Dictionary;
 using Structural::Collections::Generic::Array;

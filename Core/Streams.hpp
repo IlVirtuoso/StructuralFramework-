@@ -1,15 +1,20 @@
 #include <iostream>
 #include <fstream>
 
-class Reader
-{
+namespace Structural {
+	namespace Streams {
+		
+		class Reader
+		{
 
-public:
+		public:
 
-	virtual char Read() = 0;
-	virtual char Write(char c) = 0;
-	virtual void SetPosition(int pos) = 0;
+			virtual char Read() = 0;
+			virtual char Write(char c) = 0;
+			virtual void SetPosition(int pos) = 0;
+
+		};
 
 
-};
-
+	}
+}
