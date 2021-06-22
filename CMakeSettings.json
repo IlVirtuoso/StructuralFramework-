@@ -10,7 +10,48 @@
       "buildCommandArgs": "",
       "ctestCommandArgs": "",
       "inheritEnvironments": [ "msvc_x64_x64" ],
-      "variables": []
+      "variables": [
+        {
+          "name": "Boost_DIR",
+          "value": "",
+          "type": "PATH"
+        },
+        {
+          "name": "Boost_INCLUDE_DIR",
+          "value": "",
+          "type": "PATH"
+        },
+        {
+          "name": "Boost_LIBRARY_DIR_DEBUG",
+          "value": "",
+          "type": "PATH"
+        },
+        {
+          "name": "Boost_LIBRARY_DIR_RELEASE",
+          "value": "",
+          "type": "PATH"
+        },
+        {
+          "name": "Boost_PROGRAM_OPTIONS_LIBRARY_DEBUG",
+          "value": "",
+          "type": "STRING"
+        },
+        {
+          "name": "Boost_PROGRAM_OPTIONS_LIBRARY_RELEASE",
+          "value": "",
+          "type": "STRING"
+        },
+        {
+          "name": "boost_headers_DIR",
+          "value": "",
+          "type": "PATH"
+        },
+        {
+          "name": "boost_program_options_DIR",
+          "value": "",
+          "type": "PATH"
+        }
+      ]
     }
   ]
 }
