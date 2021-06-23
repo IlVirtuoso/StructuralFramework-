@@ -4,7 +4,7 @@
 cmake_minimum_required (VERSION 3.8)
 if(NOT DEFINED ${LOCAL_RUN})
 	set(LOCAL_RUN true)
-project("NetSupport")
+project("Structural.Net")
 endif() 
 
 # Aggiungere l'origine all'eseguibile di questo progetto.
@@ -15,12 +15,12 @@ if(${Boost_FOUND})
 endif()
 
 if(${LOCAL_RUN})
-	ADD_EXECUTABLE(NetSupport "NetSupport.h" "NetSupport.cpp")
+	ADD_EXECUTABLE(Structural.Net "NetSupport.h" "NetSupport.cpp")
 else()
-	add_library (NetSupport SHARED "NetSupport.h" "NetSupport.cpp")
-	target_link_libraries(NetSupport LINK_PUBLIC Core)
+	add_library (Structural.Net SHARED "NetSupport.h" "NetSupport.cpp")
+	target_link_libraries(Structural.Net LINK_PUBLIC Core)
 # TODO: Aggiungere i test e, se necessario, installare le destinazioni.
 endif()
-target_link_libraries(NetSupport LINK_PUBLIC ${Boost_LIBRARIES})
+target_link_libraries(Structural.Net LINK_PUBLIC ${Boost_LIBRARIES})
 
-target_include_directories(NetSupport PUBLIC Core)
+target_include_directories(Structural.Net PUBLIC Core)

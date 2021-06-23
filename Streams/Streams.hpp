@@ -34,7 +34,21 @@ namespace Structural {
 			std::string ReadAll();
 			char Read() override;
 			void SetPosition(int pos) override;
+			int Size();
 
+		};
+
+
+		class FileReader : Reader {
+			FILE* file;
+			
+		public:
+			FileReader(std::string path);
+			FileReader(FILE* file);
+			std::string ReadLine();
+			std::string ReadAll();
+			char Read() override;
+			void SetPosition(int pos) override;
 		};
 
 		
