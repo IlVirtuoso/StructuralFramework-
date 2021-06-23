@@ -15,8 +15,6 @@ int main()
 	Dictionary<string, int> dict{};
 	dict.Insert("Henlo", 10);
 	cout << dict["Henlo"] << endl;
-	dict.Remove("Henlo");
-	cout << dict["Henlo"] << endl;
 }
 
 

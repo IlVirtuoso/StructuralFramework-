@@ -9,6 +9,11 @@
       "cmakeCommandArgs": "",
       "buildCommandArgs": "",
       "ctestCommandArgs": "",
+      "intellisenseOptions": {
+        "additionalCompilerArgs": "--all",
+        "useCompilerDefaults": false
+      },
+      "intelliSenseMode": "windows-msvc-x64",
       "inheritEnvironments": [ "msvc_x64_x64" ],
       "variables": [
         {

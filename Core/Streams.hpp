@@ -1,5 +1,4 @@
 #include <iostream>
-#include <fstream>
 
 namespace Structural {
 	namespace Streams {
@@ -21,16 +20,20 @@ namespace Structural {
 		};
 
 
-		class FileReader : Reader {
-			std::ifstream file;
+		class BufferedFileReader : Reader {
+			FILE* file;
+			char* buffer = NULL;
+			int pointer = 0;
+			bool endOfFile = false;
+			
 
 		public:
-			FileReader(std::string path);
-			FileReader(std::ifstream file);
-
+			BufferedFileReader(std::string path);
+			BufferedFileReader(FILE * file);
 			std::string ReadLine();
 			std::string ReadAll();
-
+			char Read() override;
+			void SetPosition(int pos) override;
 
 		};
 

@@ -3,28 +3,54 @@
 namespace Structural {
 
 	namespace Streams {
-		FileReader::FileReader(std::string path) {
-			this->file.open(path, std::ios_base::_Openmode::_Openmask);
+		BufferedFileReader::BufferedFileReader(std::string path) {
+			this->file = fopen(path.c_str(), "R");
+			endOfFile = false;
 		}
 
-		FileReader::FileReader(std::ifstream stream) {
-			this->file = stream;
+		BufferedFileReader::BufferedFileReader(FILE * file) {
+			this->file = file;
+			endOfFile = false;
 		}
 
-		char FileReader::Read() {
-
+		char BufferedFileReader::Read() {
+			char c;
+			if (endOfFile) return -1;
+			if (this->pointer == 0 && this->buffer == NULL) {
+				this->buffer = new char[128];
+				fgets(this->buffer, 128,this->file);
+			}
+			if (!endOfFile) {
+				c = this->buffer[this->pointer];
+				pointer++;
+				if (c == -1)
+					endOfFile = true;
+				if (pointer == 128) {
+					this->buffer = new char[128];
+					pointer = 0;
+				}
+			}
+			
 		}
 
-		std::string FileReader::ReadLine() {
-
+		std::string BufferedFileReader::ReadLine() {
+			std::string str{};
+			char c;
+			while ((c = Read()) != -1 && c != '\n')
+				str.push_back(c);
+			return str;
 		}
 
-		void FileReader::SetPosition(int pos) {
-			this->file.cur = pos;
+		void BufferedFileReader::SetPosition(int pos) {
+			fseek(this->file, pos, 0);
 		}
 
-		std::string FileReader::ReadAll() {
-
+		std::string BufferedFileReader::ReadAll() {
+			std::string str{};
+			char c;
+			while ((c = Read()) != -1)
+				str.push_back(c);
+			return str;
 		}
 	}
 }
