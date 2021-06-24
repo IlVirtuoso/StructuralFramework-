@@ -9,7 +9,7 @@ endif()
 
 
 if(${LOCAL_RUN})
-	ADD_EXECUTABLE(Structural.Streams  "Streams.hpp" "BufferedReader.cpp" "FileReader.cpp" "test.cpp" "FileSystem.hpp" "FileSystem.cpp")
+	ADD_EXECUTABLE(Structural.Streams  "Streams.hpp" "BufferedReader.cpp" "FileReader.cpp" "test.cpp"  )
 else()
 	add_library (Structural.Streams  "Streams.hpp" "Streams.cpp")
 	target_link_libraries(Structural.Streams LINK SHARED)

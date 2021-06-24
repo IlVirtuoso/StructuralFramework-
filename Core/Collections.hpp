@@ -174,7 +174,21 @@ namespace Structural {
 				}
 			};
 
+			template<typename T>
+			class Queue {
+			private:
+				Array<T> data{};
+			public:
+				void Enqueue(T elem) {
+					data.Insert(elem);
+				}
 
+				T Dequeue() {
+					auto var = data.at(0);
+					data.Remove(0);
+					return var;
+				}
+			};
 			
 			
 		}

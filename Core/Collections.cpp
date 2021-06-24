@@ -5,7 +5,9 @@ namespace Structural {
 	namespace Collections {
 
 		namespace Generic {
-			
+			void Queue::Enqueue(void* data) {
+
+			}
 		}
 	}
 

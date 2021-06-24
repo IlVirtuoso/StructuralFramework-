@@ -8,11 +8,10 @@ cmake_minimum_required (VERSION 3.8)
 project(Structural.Core)
 
 
-
     # Note: 2 target(s) were omitted.
 # Aggiungere l'origine all'eseguibile di questo progetto.
 if(${LOCAL_RUN})
-	add_executable (Structural.Core "Core.cpp" "Core.h" "Interfaces.hpp" "Parsers.hpp" "Parsers.cpp")
+	add_executable (Structural.Core "Core.cpp" "Core.h" "Interfaces.hpp" "Parsers.hpp" "Parsers.cpp" "Syncronized.hpp")
 else()
 	add_library (Structural.Core SHARED "Core.cpp" "Core.h"  "ISerializable.hpp" "Collections.hpp" "Collections.cpp")
 	endif()
